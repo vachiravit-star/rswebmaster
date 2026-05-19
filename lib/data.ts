@@ -1,26 +1,66 @@
 import fs from 'fs'
 import path from 'path'
+import {
+  getServiceAccountToken,
+  getOrCreateFolder,
+  findFileId,
+  readDriveFile,
+  writeDriveFile,
+} from './drive'
 
 const dataDir = path.join(process.cwd(), 'data')
 
-// In-memory URL cache per serverless instance
-const urlCache: Record<string, string | null> = {}
+// ---- Drive data folder ----
+
+let driveDataFolderId: string | null = null
+
+async function getDriveDataFolder(token: string): Promise<string | null> {
+  const rootId = process.env.DRIVE_FOLDER_ID
+  if (!rootId) return null
+  if (driveDataFolderId) return driveDataFolderId
+  driveDataFolderId = await getOrCreateFolder('data', rootId, token)
+  return driveDataFolderId
+}
+
+// ---- Vercel Blob fallback ----
+
+const blobUrlCache: Record<string, string | null> = {}
 
 async function resolveBlobUrl(filename: string): Promise<string | null> {
   if (!process.env.BLOB_READ_WRITE_TOKEN) return null
-  if (filename in urlCache) return urlCache[filename]
+  if (filename in blobUrlCache) return blobUrlCache[filename]
   try {
     const { list } = await import('@vercel/blob')
     const { blobs } = await list({ prefix: `data/${filename}` })
     const blob = blobs.find((b) => b.pathname === `data/${filename}`)
-    urlCache[filename] = blob?.url ?? null
+    blobUrlCache[filename] = blob?.url ?? null
   } catch {
-    urlCache[filename] = null
+    blobUrlCache[filename] = null
   }
-  return urlCache[filename]
+  return blobUrlCache[filename]
 }
 
+// ---- Public API ----
+
 export async function readData<T>(filename: string, fallback: T): Promise<T> {
+  // Priority 1: Google Drive
+  const token = await getServiceAccountToken()
+  if (token && process.env.DRIVE_FOLDER_ID) {
+    try {
+      const folderId = await getDriveDataFolder(token)
+      if (folderId) {
+        const fileId = await findFileId(filename, folderId, token)
+        if (fileId) {
+          const content = await readDriveFile(fileId, token)
+          return JSON.parse(content) as T
+        }
+      }
+    } catch (e) {
+      console.error(`[data] Drive read error for ${filename}:`, e)
+    }
+  }
+
+  // Priority 2: Vercel Blob
   const blobUrl = await resolveBlobUrl(filename)
   if (blobUrl) {
     try {
@@ -28,6 +68,8 @@ export async function readData<T>(filename: string, fallback: T): Promise<T> {
       if (res.ok) return (await res.json()) as T
     } catch {}
   }
+
+  // Priority 3: Local files (dev / initial seed data)
   const filePath = path.join(dataDir, filename)
   if (!fs.existsSync(filePath)) return fallback
   try {
@@ -38,6 +80,21 @@ export async function readData<T>(filename: string, fallback: T): Promise<T> {
 }
 
 export async function writeData<T>(filename: string, data: T): Promise<void> {
+  // Priority 1: Google Drive
+  const token = await getServiceAccountToken()
+  if (token && process.env.DRIVE_FOLDER_ID) {
+    try {
+      const folderId = await getDriveDataFolder(token)
+      if (folderId) {
+        await writeDriveFile(filename, folderId, JSON.stringify(data, null, 2), 'application/json', token)
+        return
+      }
+    } catch (e) {
+      console.error(`[data] Drive write error for ${filename}:`, e)
+    }
+  }
+
+  // Priority 2: Vercel Blob
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     const { put } = await import('@vercel/blob')
     const result = await put(`data/${filename}`, JSON.stringify(data, null, 2), {
@@ -45,12 +102,13 @@ export async function writeData<T>(filename: string, data: T): Promise<void> {
       contentType: 'application/json',
       addRandomSuffix: false,
     })
-    urlCache[filename] = result.url
+    blobUrlCache[filename] = result.url
     return
   }
+
+  // Priority 3: Local files
   if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true })
-  const filePath = path.join(dataDir, filename)
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
+  fs.writeFileSync(path.join(dataDir, filename), JSON.stringify(data, null, 2), 'utf-8')
 }
 
 export function generateId(): string {
