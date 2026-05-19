@@ -74,15 +74,15 @@ interface NewsletterConfig {
   items: NewsletterItem[]
 }
 
-const COLOR_MAP: Record<string, string> = {
-  blue:    'bg-blue-50 text-blue-700 border-blue-100',
-  emerald: 'bg-emerald-50 text-emerald-700 border-emerald-100',
-  purple:  'bg-purple-50 text-purple-700 border-purple-100',
-  amber:   'bg-amber-50 text-amber-700 border-amber-100',
-  rose:    'bg-rose-50 text-rose-700 border-rose-100',
-  slate:   'bg-slate-50 text-slate-700 border-slate-100',
-  indigo:  'bg-indigo-50 text-indigo-700 border-indigo-100',
-  teal:    'bg-teal-50 text-teal-700 border-teal-100',
+const COLOR_MAP: Record<string, { bg: string; icon: string; text: string }> = {
+  blue:    { bg: 'bg-blue-500',    icon: 'text-white', text: 'text-blue-700' },
+  emerald: { bg: 'bg-emerald-500', icon: 'text-white', text: 'text-emerald-700' },
+  purple:  { bg: 'bg-purple-500',  icon: 'text-white', text: 'text-purple-700' },
+  amber:   { bg: 'bg-amber-400',   icon: 'text-white', text: 'text-amber-700' },
+  rose:    { bg: 'bg-rose-500',    icon: 'text-white', text: 'text-rose-700' },
+  slate:   { bg: 'bg-slate-500',   icon: 'text-white', text: 'text-slate-700' },
+  indigo:  { bg: 'bg-indigo-500',  icon: 'text-white', text: 'text-indigo-700' },
+  teal:    { bg: 'bg-teal-500',    icon: 'text-white', text: 'text-teal-700' },
 }
 
 interface HomeProps {
@@ -144,18 +144,23 @@ export default function Home({ settings, latestNews, events, banner, popup, mana
       {/* Quick Links */}
       {quickLinks.length > 0 && (
         <section className="bg-white border-b border-slate-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-              {[...quickLinks].sort((a, b) => a.order - b.order).map((link) => (
-                <Link
-                  key={link.id}
-                  href={link.href}
-                  className={`flex flex-col items-center gap-2 p-4 rounded-xl border transition-all duration-150 hover:shadow-md hover:-translate-y-0.5 ${COLOR_MAP[link.color] ?? COLOR_MAP.slate}`}
-                >
-                  <span className="text-2xl">{link.icon}</span>
-                  <span className="text-xs font-medium text-center leading-tight">{link.label}</span>
-                </Link>
-              ))}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+              {[...quickLinks].sort((a, b) => a.order - b.order).map((link) => {
+                const c = COLOR_MAP[link.color] ?? COLOR_MAP.slate
+                return (
+                  <Link
+                    key={link.id}
+                    href={link.href}
+                    className="flex flex-col items-center gap-2.5 group"
+                  >
+                    <div className={`w-14 h-14 rounded-2xl ${c.bg} flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all duration-200`}>
+                      <span className={`text-2xl ${c.icon}`}>{link.icon}</span>
+                    </div>
+                    <span className={`text-xs font-medium text-center leading-tight ${c.text}`}>{link.label}</span>
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>

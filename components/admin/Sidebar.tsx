@@ -188,7 +188,11 @@ interface SessionInfo {
   allowedPages: string[]
 }
 
-export default function Sidebar() {
+interface SidebarProps {
+  onMobileClose?: () => void
+}
+
+export default function Sidebar({ onMobileClose }: SidebarProps) {
   const router = useRouter()
   const [collapsed, setCollapsed] = useState(false)
   const [session, setSession] = useState<SessionInfo | null>(null)
@@ -225,6 +229,7 @@ export default function Sidebar() {
       key={item.href}
       href={item.href}
       title={collapsed ? item.label : undefined}
+      onClick={() => onMobileClose?.()}
       className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
         isActive(item.href)
           ? 'bg-primary-700 text-white'
@@ -256,14 +261,19 @@ export default function Sidebar() {
             </div>
           </div>
         )}
+        {/* Close button on mobile, collapse on desktop */}
         <button
-          onClick={() => setCollapsed(!collapsed)}
+          onClick={() => onMobileClose ? onMobileClose() : setCollapsed(!collapsed)}
           className="ml-auto p-1 rounded text-primary-400 hover:text-white transition-colors"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-              d={collapsed ? 'M13 5l7 7-7 7M5 5l7 7-7 7' : 'M11 19l-7-7 7-7m8 14l-7-7 7-7'}
-            />
+            {onMobileClose ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d={collapsed ? 'M13 5l7 7-7 7M5 5l7 7-7 7' : 'M11 19l-7-7 7-7m8 14l-7-7 7-7'}
+              />
+            )}
           </svg>
         </button>
       </div>
