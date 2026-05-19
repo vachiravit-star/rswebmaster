@@ -249,7 +249,7 @@ export default function AdminGallery({ config: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'gallery')
   if (denied) return denied
-  const config = readData('gallery.json', {
+  const config = await readData('gallery.json', {
     enabled: true,
     title: 'ภาพกิจกรรม',
     folders: [],

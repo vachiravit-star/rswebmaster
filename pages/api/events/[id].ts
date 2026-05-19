@@ -13,9 +13,9 @@ interface CalEvent {
   createdAt: string
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query as { id: string }
-  const events = readData<CalEvent[]>('events.json', [])
+  const events = await readData<CalEvent[]>('events.json', [])
   const idx = events.findIndex((e) => e.id === id)
 
   if (req.method === 'GET') {
@@ -28,14 +28,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'PUT') {
     if (idx === -1) return res.status(404).json({ error: 'ไม่พบข้อมูล' })
     events[idx] = { ...events[idx], ...req.body, id }
-    writeData('events.json', events)
+    await writeData('events.json', events)
     return res.status(200).json(events[idx])
   }
 
   if (req.method === 'DELETE') {
     if (idx === -1) return res.status(404).json({ error: 'ไม่พบข้อมูล' })
     const deleted = events.splice(idx, 1)[0]
-    writeData('events.json', events)
+    await writeData('events.json', events)
     return res.status(200).json(deleted)
   }
 

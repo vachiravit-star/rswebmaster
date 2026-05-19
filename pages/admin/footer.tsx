@@ -245,7 +245,7 @@ export default function AdminFooter({ data: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'footer')
   if (denied) return denied
-  const data = readData<FooterData>('footer.json', {
+  const data = await readData<FooterData>('footer.json', {
     schoolNameTh: 'โรงเรียนราชสีมาวิทยาลัย',
     schoolNameEn: 'Ratchasima Wittayalai School',
     address: '',

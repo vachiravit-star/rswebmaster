@@ -297,7 +297,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   }
   const { readData } = await import('../../lib/data')
   interface SubAdminData { id: string; username: string; displayName: string; allowedPages: string[] }
-  const raw = readData<Array<SubAdminData & { password: string }>>('subadmins.json', [])
+  const raw = await readData<Array<SubAdminData & { password: string }>>('subadmins.json', [])
   const admins: SubAdminData[] = raw.map(({ password: _p, ...rest }) => rest)
   return { props: { admins } }
 }

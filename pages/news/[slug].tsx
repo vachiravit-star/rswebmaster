@@ -104,7 +104,7 @@ export default function NewsDetail({ news, related }: NewsDetailProps) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug as string
-  const allNews = readData<NewsItem[]>('news.json', [])
+  const allNews = await readData<NewsItem[]>('news.json', [])
   const news = allNews.find((n) => n.slug === slug && n.published)
 
   if (!news) return { notFound: true }

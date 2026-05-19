@@ -217,7 +217,7 @@ export default function AdminHomepage({ data: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'homepage')
   if (denied) return denied
-  const data = readData('homepage.json', {
+  const data = await readData('homepage.json', {
     banner: { enabled: true, image: '', title: '', subtitle: '', description: '', buttonText: '', buttonLink: '' },
   })
   return { props: { data } }

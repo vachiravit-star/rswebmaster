@@ -261,7 +261,7 @@ export default function AdminManagement({ members: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'management')
   if (denied) return denied
-  const members = readData<ManagementMember[]>('management.json', [])
+  const members = (await readData<ManagementMember[]>('management.json', []))
     .sort((a, b) => a.order - b.order)
   return { props: { members } }
 }

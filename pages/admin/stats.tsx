@@ -154,6 +154,6 @@ export default function AdminStats({ stats: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'stats')
   if (denied) return denied
-  const stats = readData('stats.json', [])
+  const stats = await readData('stats.json', [])
   return { props: { stats } }
 }

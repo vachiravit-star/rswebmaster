@@ -10,7 +10,7 @@ interface SubAdmin {
   allowedPages: string[]
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).end()
 
   const { username, password } = req.body
@@ -23,7 +23,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(200).json({ ok: true, role: 'super' })
   }
 
-  const subAdmins = readData<SubAdmin[]>('subadmins.json', [])
+  const subAdmins = await readData<SubAdmin[]>('subadmins.json', [])
   const sub = subAdmins.find((s) => s.username === username && s.password === password)
   if (sub) {
     setAuthCookie(res, `sub:${sub.username}`)

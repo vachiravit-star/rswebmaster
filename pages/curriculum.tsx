@@ -158,7 +158,7 @@ export default function CurriculumPage({ data }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = readData<CurriculumData>('curriculum.json', {
+  const data = await readData<CurriculumData>('curriculum.json', {
     pageTitle: 'หลักสูตรการเรียนการสอน',
     pageSubtitle: '',
     programs: [],

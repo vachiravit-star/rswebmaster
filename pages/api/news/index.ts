@@ -15,8 +15,8 @@ interface NewsItem {
   published: boolean
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const news = readData<NewsItem[]>('news.json', [])
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const news = await readData<NewsItem[]>('news.json', [])
 
   if (req.method === 'GET') {
     const { category, published } = req.query
@@ -49,7 +49,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       createdAt: new Date().toISOString(),
       published: published !== false,
     }
-    writeData('news.json', [item, ...news])
+    await writeData('news.json', [item, ...news])
     return res.status(201).json(item)
   }
 

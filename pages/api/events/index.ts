@@ -13,8 +13,8 @@ interface CalEvent {
   createdAt: string
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const events = readData<CalEvent[]>('events.json', [])
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const events = await readData<CalEvent[]>('events.json', [])
 
   if (req.method === 'GET') {
     events.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())
@@ -41,7 +41,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       color: color || categoryColors[category] || '#A83700',
       createdAt: new Date().toISOString(),
     }
-    writeData('events.json', [...events, item])
+    await writeData('events.json', [...events, item])
     return res.status(201).json(item)
   }
 

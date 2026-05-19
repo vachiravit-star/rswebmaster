@@ -307,7 +307,7 @@ export default function AdminEventsList({ events: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'events')
   if (denied) return denied
-  const events = readData<CalEvent[]>('events.json', [])
+  const events = (await readData<CalEvent[]>('events.json', []))
     .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())
   return { props: { events } }
 }

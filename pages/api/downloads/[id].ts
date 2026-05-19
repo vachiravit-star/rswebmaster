@@ -13,9 +13,9 @@ interface Download {
   createdAt: string
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query as { id: string }
-  const downloads = readData<Download[]>('downloads.json', [])
+  const downloads = await readData<Download[]>('downloads.json', [])
   const idx = downloads.findIndex((d) => d.id === id)
 
   if (req.method === 'GET') {
@@ -28,14 +28,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'PUT') {
     if (idx === -1) return res.status(404).json({ error: 'ไม่พบข้อมูล' })
     downloads[idx] = { ...downloads[idx], ...req.body, id }
-    writeData('downloads.json', downloads)
+    await writeData('downloads.json', downloads)
     return res.status(200).json(downloads[idx])
   }
 
   if (req.method === 'DELETE') {
     if (idx === -1) return res.status(404).json({ error: 'ไม่พบข้อมูล' })
     const deleted = downloads.splice(idx, 1)[0]
-    writeData('downloads.json', downloads)
+    await writeData('downloads.json', downloads)
     return res.status(200).json(deleted)
   }
 

@@ -359,28 +359,28 @@ export default function Home({ settings, latestNews, events, banner, popup, mana
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const settings = readData<Settings>('settings.json', {
+  const settings = await readData<Settings>('settings.json', {
     heroSlides: [],
     schoolInfo: { nameTh: '', vision: '', mission: '' },
   })
-  const allNews = readData<NewsItem[]>('news.json', [])
-  const events = readData<CalEvent[]>('events.json', [])
-  const homepageData = readData<{ banner: BannerData }>('homepage.json', {
+  const allNews = await readData<NewsItem[]>('news.json', [])
+  const events = await readData<CalEvent[]>('events.json', [])
+  const homepageData = await readData<{ banner: BannerData }>('homepage.json', {
     banner: { enabled: false, image: '', title: '', subtitle: '', description: '', buttonText: '', buttonLink: '' },
   })
-  const popup = readData<PopupData>('popup.json', {
+  const popup = await readData<PopupData>('popup.json', {
     enabled: false, title: '', content: '', image: '', buttonText: '', buttonLink: '', showOnce: true,
   })
-  const management = readData<ManagementMember[]>('management.json', [])
+  const management = (await readData<ManagementMember[]>('management.json', []))
     .sort((a, b) => a.order - b.order)
-  const gallery = readData<GalleryConfig>('gallery.json', {
+  const gallery = await readData<GalleryConfig>('gallery.json', {
     enabled: false,
     title: 'ภาพกิจกรรม',
     folders: [],
   })
-  const quickLinks = readData<QuickLink[]>('quicklinks.json', [])
-  const stats = readData<Stat[]>('stats.json', [])
-  const newsletter = readData<NewsletterConfig>('newsletter.json', {
+  const quickLinks = await readData<QuickLink[]>('quicklinks.json', [])
+  const stats = await readData<Stat[]>('stats.json', [])
+  const newsletter = await readData<NewsletterConfig>('newsletter.json', {
     enabled: true, title: 'จดหมายข่าว', driveFolderId: '', items: [],
   })
 

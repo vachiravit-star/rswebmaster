@@ -216,6 +216,6 @@ export default function AdminDownloads({ downloads: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'downloads')
   if (denied) return denied
-  const downloads = readData<Download[]>('downloads.json', [])
+  const downloads = await readData<Download[]>('downloads.json', [])
   return { props: { downloads } }
 }

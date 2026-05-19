@@ -25,13 +25,13 @@ const DEFAULT: NewsletterConfig = {
   items: [],
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
-    return res.status(200).json(readData<NewsletterConfig>('newsletter.json', DEFAULT))
+    return res.status(200).json(await readData<NewsletterConfig>('newsletter.json', DEFAULT))
   }
   if (req.method === 'PUT') {
     if (!isAuthenticated(req as never)) return res.status(401).json({ error: 'Unauthorized' })
-    writeData('newsletter.json', req.body)
+    await writeData('newsletter.json', req.body)
     return res.status(200).json({ ok: true })
   }
   res.status(405).end()

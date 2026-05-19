@@ -112,7 +112,7 @@ export default function NewsPage({ news, category: initCat, search: initSearch }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const category = (query.category as string) || ''
   const search = (query.search as string) || ''
-  const allNews = readData<NewsItem[]>('news.json', [])
+  const allNews = await readData<NewsItem[]>('news.json', [])
   const news = allNews
     .filter((n) => n.published)
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())

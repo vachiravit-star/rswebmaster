@@ -205,7 +205,7 @@ export default function AboutPage({ management }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const management = readData<ManagementMember[]>('management.json', [])
+  const management = (await readData<ManagementMember[]>('management.json', []))
     .sort((a, b) => a.order - b.order)
   return { props: { management }, revalidate: 60 }
 }

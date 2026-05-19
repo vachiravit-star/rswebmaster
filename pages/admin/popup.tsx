@@ -216,7 +216,7 @@ export default function AdminPopup({ data: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'popup')
   if (denied) return denied
-  const data = readData('popup.json', {
+  const data = await readData('popup.json', {
     enabled: false,
     title: '',
     content: '',

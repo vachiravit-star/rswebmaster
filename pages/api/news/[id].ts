@@ -15,9 +15,9 @@ interface NewsItem {
   published: boolean
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query as { id: string }
-  const news = readData<NewsItem[]>('news.json', [])
+  const news = await readData<NewsItem[]>('news.json', [])
   const idx = news.findIndex((n) => n.id === id)
 
   if (req.method === 'GET') {
@@ -38,14 +38,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         : news[idx].slug,
     }
     news[idx] = updated
-    writeData('news.json', news)
+    await writeData('news.json', news)
     return res.status(200).json(updated)
   }
 
   if (req.method === 'DELETE') {
     if (idx === -1) return res.status(404).json({ error: 'ไม่พบข้อมูล' })
     const deleted = news.splice(idx, 1)[0]
-    writeData('news.json', news)
+    await writeData('news.json', news)
     return res.status(200).json(deleted)
   }
 

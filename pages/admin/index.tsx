@@ -154,9 +154,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (!isAuthenticated(req as never)) {
     return { redirect: { destination: '/admin/login', permanent: false } }
   }
-  const allNews = readData<NewsItem[]>('news.json', [])
-  const events = readData<CalEvent[]>('events.json', [])
-  const downloads = readData<Download[]>('downloads.json', [])
+  const allNews = await readData<NewsItem[]>('news.json', [])
+  const events = await readData<CalEvent[]>('events.json', [])
+  const downloads = await readData<Download[]>('downloads.json', [])
 
   const now = new Date()
   now.setHours(0, 0, 0, 0)

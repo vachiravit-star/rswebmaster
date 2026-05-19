@@ -110,6 +110,6 @@ export default function CalendarPage({ events }: CalendarPageProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const events = readData<CalEvent[]>('events.json', [])
+  const events = await readData<CalEvent[]>('events.json', [])
   return { props: { events }, revalidate: 60 }
 }

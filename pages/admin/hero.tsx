@@ -328,6 +328,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'hero')
   if (denied) return denied
   interface Settings { heroSlides: Slide[]; schoolInfo: unknown }
-  const settings = readData<Settings>('settings.json', { heroSlides: [], schoolInfo: {} })
+  const settings = await readData<Settings>('settings.json', { heroSlides: [], schoolInfo: {} })
   return { props: { slides: settings.heroSlides } }
 }

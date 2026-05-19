@@ -10,7 +10,7 @@ interface SubAdmin {
   allowedPages: string[]
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!isAuthenticated(req)) return res.status(401).json({ error: 'Unauthorized' })
 
   if (isSuperAdmin(req)) {
@@ -18,7 +18,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   const username = getSessionUsername(req)
-  const subAdmins = readData<SubAdmin[]>('subadmins.json', [])
+  const subAdmins = await readData<SubAdmin[]>('subadmins.json', [])
   const sub = subAdmins.find((s) => s.username === username)
   if (!sub) return res.status(401).json({ error: 'Unauthorized' })
 

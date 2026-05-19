@@ -11,8 +11,8 @@ export interface ManagementMember {
   photo: string
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const members = readData<ManagementMember[]>('management.json', [])
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const members = await readData<ManagementMember[]>('management.json', [])
 
   if (req.method === 'GET') {
     return res.status(200).json(members.sort((a, b) => a.order - b.order))
@@ -31,7 +31,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       order: order ?? members.length + 1,
       photo: photo || '',
     }
-    writeData('management.json', [...members, member])
+    await writeData('management.json', [...members, member])
     return res.status(201).json(member)
   }
 

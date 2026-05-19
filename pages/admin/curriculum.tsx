@@ -393,7 +393,7 @@ export default function AdminCurriculum({ data: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'curriculum')
   if (denied) return denied
-  const data = readData<CurriculumData>('curriculum.json', {
+  const data = await readData<CurriculumData>('curriculum.json', {
     pageTitle: 'หลักสูตรการเรียนการสอน',
     pageSubtitle: '',
     programs: [],

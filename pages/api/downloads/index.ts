@@ -13,8 +13,8 @@ interface Download {
   createdAt: string
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const downloads = readData<Download[]>('downloads.json', [])
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const downloads = await readData<Download[]>('downloads.json', [])
 
   if (req.method === 'GET') {
     const { category } = req.query
@@ -39,7 +39,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       fileSize: fileSize || '',
       createdAt: new Date().toISOString(),
     }
-    writeData('downloads.json', [item, ...downloads])
+    await writeData('downloads.json', [item, ...downloads])
     return res.status(201).json(item)
   }
 

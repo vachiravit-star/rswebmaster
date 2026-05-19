@@ -280,6 +280,6 @@ export default function AdminQuickLinks({ links: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'quicklinks')
   if (denied) return denied
-  const links = readData('quicklinks.json', [])
+  const links = await readData('quicklinks.json', [])
   return { props: { links } }
 }

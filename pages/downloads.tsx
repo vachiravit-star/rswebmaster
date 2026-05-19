@@ -151,6 +151,6 @@ export default function DownloadsPage({ downloads }: DownloadsPageProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const downloads = readData<Download[]>('downloads.json', [])
+  const downloads = await readData<Download[]>('downloads.json', [])
   return { props: { downloads }, revalidate: 60 }
 }

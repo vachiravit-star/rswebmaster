@@ -12,14 +12,14 @@ const DEFAULT = {
   showOnce: true,
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
-    return res.status(200).json(readData('popup.json', DEFAULT))
+    return res.status(200).json(await readData('popup.json', DEFAULT))
   }
 
   if (req.method === 'PUT') {
     if (!isAuthenticated(req)) return res.status(401).json({ error: 'Unauthorized' })
-    writeData('popup.json', req.body)
+    await writeData('popup.json', req.body)
     return res.status(200).json(req.body)
   }
 

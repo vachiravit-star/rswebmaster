@@ -323,7 +323,7 @@ export default function AdminNewsletter({ config: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'newsletter')
   if (denied) return denied
-  const config = readData('newsletter.json', {
+  const config = await readData('newsletter.json', {
     enabled: true,
     title: 'จดหมายข่าว',
     driveFolderId: '',

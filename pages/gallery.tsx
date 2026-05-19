@@ -57,12 +57,12 @@ export default function GalleryPage({ gallery, heroSlides }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const gallery = readData<GalleryConfig>('gallery.json', {
+  const gallery = await readData<GalleryConfig>('gallery.json', {
     enabled: true,
     title: 'ภาพกิจกรรม',
     folders: [],
   })
-  const settings = readData<{ heroSlides: Slide[] }>('settings.json', { heroSlides: [] })
+  const settings = await readData<{ heroSlides: Slide[] }>('settings.json', { heroSlides: [] })
   return {
     props: { gallery, heroSlides: settings.heroSlides },
     revalidate: 60,

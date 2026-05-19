@@ -173,7 +173,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
   const denied = checkPageAccess(req as never, 'news')
   if (denied) return denied
   const { id } = params as { id: string }
-  const allNews = readData<NewsItem[]>('news.json', [])
+  const allNews = await readData<NewsItem[]>('news.json', [])
   const news = allNews.find((n) => n.id === id)
   if (!news) return { notFound: true }
   return { props: { news } }

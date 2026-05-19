@@ -140,7 +140,7 @@ export default function AdminNewsList({ news: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'news')
   if (denied) return denied
-  const news = readData<NewsItem[]>('news.json', [])
+  const news = (await readData<NewsItem[]>('news.json', []))
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
   return { props: { news } }
 }

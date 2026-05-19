@@ -343,7 +343,7 @@ export default function AdminTheme({ theme: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'theme')
   if (denied) return denied
-  const theme = readData<ThemeData>('theme.json', {
+  const theme = await readData<ThemeData>('theme.json', {
     mode: 'dark',
     palette: {
       '50': '#FFF2EB', '100': '#FFDECC', '200': '#FFB68F', '300': '#FF8E52',

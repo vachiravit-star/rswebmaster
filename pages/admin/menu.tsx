@@ -269,6 +269,6 @@ export default function AdminMenu({ items: initial }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const denied = checkPageAccess(req as never, 'menu')
   if (denied) return denied
-  const items = readData('menu.json', [])
+  const items = await readData('menu.json', [])
   return { props: { items } }
 }

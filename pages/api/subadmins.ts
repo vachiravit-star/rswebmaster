@@ -10,10 +10,10 @@ interface SubAdmin {
   allowedPages: string[]
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!isSuperAdmin(req)) return res.status(403).json({ error: 'Forbidden' })
 
-  const admins = readData<SubAdmin[]>('subadmins.json', [])
+  const admins = await readData<SubAdmin[]>('subadmins.json', [])
 
   if (req.method === 'GET') {
     const safe = admins.map(({ password: _p, ...rest }) => rest)
@@ -35,7 +35,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       displayName,
       allowedPages: allowedPages ?? [],
     }
-    writeData('subadmins.json', [...admins, item])
+    await writeData('subadmins.json', [...admins, item])
     const { password: _p, ...safe } = item
     return res.status(201).json(safe)
   }
@@ -51,7 +51,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       ...(displayName && { displayName }),
       ...(allowedPages !== undefined && { allowedPages }),
     }
-    writeData('subadmins.json', admins)
+    await writeData('subadmins.json', admins)
     const { password: _p, ...safe } = admins[idx]
     return res.status(200).json(safe)
   }
@@ -60,7 +60,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const { id } = req.body
     const filtered = admins.filter((a) => a.id !== id)
     if (filtered.length === admins.length) return res.status(404).json({ error: 'ไม่พบข้อมูล' })
-    writeData('subadmins.json', filtered)
+    await writeData('subadmins.json', filtered)
     return res.status(200).json({ ok: true })
   }
 
