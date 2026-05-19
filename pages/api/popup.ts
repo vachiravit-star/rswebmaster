@@ -1,0 +1,27 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { readData, writeData } from '../../lib/data'
+import { isAuthenticated } from '../../lib/auth'
+
+const DEFAULT = {
+  enabled: false,
+  title: '',
+  content: '',
+  image: '',
+  buttonText: '',
+  buttonLink: '',
+  showOnce: true,
+}
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'GET') {
+    return res.status(200).json(readData('popup.json', DEFAULT))
+  }
+
+  if (req.method === 'PUT') {
+    if (!isAuthenticated(req)) return res.status(401).json({ error: 'Unauthorized' })
+    writeData('popup.json', req.body)
+    return res.status(200).json(req.body)
+  }
+
+  res.status(405).end()
+}

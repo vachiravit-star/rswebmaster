@@ -1,0 +1,53 @@
+[
+  {
+    "id": "m1",
+    "label": "หน้าแรก",
+    "href": "/",
+    "order": 1,
+    "children": []
+  },
+  {
+    "id": "m2",
+    "label": "เกี่ยวกับโรงเรียน",
+    "href": "/about",
+    "order": 2,
+    "children": [
+      {
+        "id": "m2a",
+        "label": "ประวัติโรงเรียน",
+        "href": "/about#history"
+      },
+      {
+        "id": "m2b",
+        "label": "วิสัยทัศน์และพันธกิจ",
+        "href": "/about#vision"
+      },
+      {
+        "id": "m2c",
+        "label": "โครงสร้างการบริหาร",
+        "href": "/about#management"
+      }
+    ]
+  },
+  {
+    "id": "m5",
+    "label": "ข่าวสาร",
+    "href": "/news",
+    "order": 5,
+    "children": []
+  },
+  {
+    "id": "m6",
+    "label": "ปฏิทินกิจกรรม",
+    "href": "/calendar",
+    "order": 6,
+    "children": []
+  },
+  {
+    "id": "m7",
+    "label": "ดาวน์โหลด",
+    "href": "/downloads",
+    "order": 7,
+    "children": []
+  }
+]

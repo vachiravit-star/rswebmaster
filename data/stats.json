@@ -1,0 +1,26 @@
+[
+  {
+    "id": "s1",
+    "value": "รุ่น 127",
+    "label": "ปีแห่งการศึกษา",
+    "order": 1
+  },
+  {
+    "id": "s2",
+    "value": "4042",
+    "label": "นักเรียน",
+    "order": 2
+  },
+  {
+    "id": "s3",
+    "value": "192",
+    "label": "คณาจารย์",
+    "order": 3
+  },
+  {
+    "id": "mpbdovjztbka",
+    "value": "รอใส่",
+    "label": "",
+    "order": 4
+  }
+]

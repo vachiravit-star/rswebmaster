@@ -1,0 +1,26 @@
+{
+  "heroSlides": [
+    {
+      "id": "mpcq07kg8itq",
+      "title": "โรงเรียนราชสีมาวิทยาลัย",
+      "subtitle": "ยินดีต้อนรับ",
+      "bgFrom": "#943400",
+      "bgTo": "#F59E0B",
+      "image": "",
+      "link": "",
+      "buttonText": ""
+    }
+  ],
+  "schoolInfo": {
+    "nameTh": "โรงเรียนราชสีมาวิทยาลัย",
+    "nameEn": "Ratchasima Wittayalai School",
+    "address": "เลขที่ 1497 ถนนมิตรภาพ ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000",
+    "phone": "044-242-571",
+    "fax": "044-242-571",
+    "email": "admin@rachasimawit.ac.th",
+    "website": "www.rachasimawit.ac.th",
+    "facebook": "https://www.facebook.com",
+    "vision": "โรงเรียนมาตรฐานสากล มุ่งเน้นความเป็นเลิศทางวิชาการ มีคุณธรรม นำสู่สากล",
+    "mission": "พัฒนาผู้เรียนให้มีคุณภาพตามมาตรฐานสากล ส่งเสริมคุณธรรม จริยธรรม และความเป็นไทย"
+  }
+}

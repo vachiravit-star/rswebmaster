@@ -1,0 +1,87 @@
+{
+  "enabled": true,
+  "title": "จดหมายข่าว",
+  "driveFolderId": "0AGohRfKJcc-GUk9PVA",
+  "items": [
+    {
+      "id": "mpctl82wcq2f",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 10,
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "mpctl7y6ozl5",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 9,
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "mpctl7tsb1l1",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 8,
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "mpctl7pqu3fc",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 7,
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "mpctl7l08st6",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 6,
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "mpctl7gimnrq",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 5,
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "mpctl7c1du8s",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 4,
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "mpctl77xz6p5",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 3,
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "mpctl72potoi",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 2,
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "mpctl59kyynh",
+      "title": "",
+      "image": "",
+      "driveFileId": "",
+      "order": 1,
+      "publishedAt": "2026-05-19"
+    }
+  ]
+}

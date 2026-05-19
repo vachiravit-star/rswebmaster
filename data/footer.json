@@ -1,0 +1,25 @@
+{
+  "schoolNameTh": "โรงเรียนราชสีมาวิทยาลัย",
+  "schoolNameEn": "Ratchasima Wittayalai School",
+  "address": "เลขที่ 1497 ถนนมิตรภาพ ตำบลในเมือง อำเภอเมือง\nจังหวัดนครราชสีมา 30000",
+  "phone": "044-242-571",
+  "email": "admin@rachasimawit.ac.th",
+  "quickLinksTitle": "ลิงก์ด่วน",
+  "quickLinks": [
+    { "id": "fl1", "label": "หน้าแรก", "href": "/" },
+    { "id": "fl2", "label": "เกี่ยวกับโรงเรียน", "href": "/about" },
+    { "id": "fl3", "label": "หลักสูตรการเรียน", "href": "/curriculum" },
+    { "id": "fl4", "label": "การรับสมัครนักเรียน", "href": "/admissions" },
+    { "id": "fl5", "label": "กิจกรรมนักเรียน", "href": "/student-life" },
+    { "id": "fl6", "label": "ปฏิทินกิจกรรม", "href": "/calendar" }
+  ],
+  "servicesTitle": "บริการ",
+  "services": [
+    { "id": "fs1", "label": "ข่าวสารและประกาศ", "href": "/news" },
+    { "id": "fs2", "label": "ดาวน์โหลดเอกสาร", "href": "/downloads" },
+    { "id": "fs3", "label": "ข่าวประชาสัมพันธ์", "href": "/news?category=pr" },
+    { "id": "fs4", "label": "ข่าวจัดซื้อจัดจ้าง", "href": "/news?category=procurement" },
+    { "id": "fs5", "label": "ข่าวกิจกรรม", "href": "/news?category=activity" }
+  ],
+  "copyright": "โรงเรียนราชสีมาวิทยาลัย. สงวนลิขสิทธิ์."
+}

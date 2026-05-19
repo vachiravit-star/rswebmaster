@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary — สีแสด (Orange) #E65100 */
+  --color-primary-50:  #FFF2EB;
+  --color-primary-100: #FFDECC;
+  --color-primary-200: #FFB68F;
+  --color-primary-300: #FF8E52;
+  --color-primary-400: #FF6A1A;
+  --color-primary-500: #E65100;
+  --color-primary-600: #BD4200;
+  --color-primary-700: #943400;
+  --color-primary-800: #6B2500;
+  --color-primary-900: #471900;
+
+  /* Gold — yellow-gold accent */
+  --color-gold-100: #FFFBEB;
+  --color-gold-200: #FEF3C7;
+  --color-gold-300: #FDE68A;
+  --color-gold-400: #FBBF24;
+  --color-gold-500: #F59E0B;
+  --color-gold-600: #D97706;
+  --color-gold-700: #B45309;
+
+  --color-slate-50: #F8FAFC;
+  --color-slate-100: #F1F5F9;
+  --color-slate-200: #E2E8F0;
+  --color-slate-300: #CBD5E1;
+  --color-slate-400: #94A3B8;
+  --color-slate-500: #64748B;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1E293B;
+  --color-slate-900: #0F172A;
+
+  --font-sans: 'Sarabun', ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1E293B;
+
+  /* Gradient header source vars — overridden per-mode by _document.tsx */
+  --gradient-header-start: var(--color-primary-900);
+  --gradient-header-mid: var(--color-primary-700);
+  --gradient-header-end: var(--color-primary-600);
+
+  /* Text on gradient — white for dark mode, dark for light mode */
+  --on-gradient-text: #ffffff;
+  --on-gradient-muted: rgba(255,255,255,0.7);
+  --on-gradient-link: var(--color-primary-300);
+
+  /* Stats section */
+  --stats-value-color: #fbbf24;
+  --stats-label-color: #fed7aa;
+
+  /* Gallery section */
+  --gallery-bg: color-mix(in srgb, var(--color-primary-900) 80%, black);
+  --gallery-placeholder-bg: linear-gradient(135deg, var(--color-primary-900) 0%, var(--color-primary-800) 60%, var(--color-primary-700) 100%);
+  --gallery-text: #ffffff;
+  --gallery-text-muted: rgba(255,255,255,0.55);
+  --gallery-btn-bg: rgba(255,255,255,0.1);
+  --gallery-btn-text: #ffffff;
+  --gallery-btn-hover: rgba(255,255,255,0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Sarabun', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes popup-in {
+  from { opacity: 0; transform: scale(0.93) translateY(14px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-popup {
+  animation: popup-in 0.22s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-in-out both;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out both;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out both;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.prose-school {
+  max-width: none;
+  line-height: 1.8;
+}
+
+.prose-school p {
+  margin-bottom: 1rem;
+}
+
+.prose-school h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #943400;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-school h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Gradient theme helpers — use CSS vars so theme color changes apply */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary-900) 0%, var(--color-primary-700) 50%, var(--color-primary-600) 100%);
+}
+
+.gradient-warm {
+  background: linear-gradient(135deg, var(--color-primary-800) 0%, var(--color-primary-500) 60%, #FBBF24 100%);
+}
+
+.gradient-page-header {
+  background: linear-gradient(135deg, var(--gradient-header-start) 0%, var(--gradient-header-mid) 60%, var(--gradient-header-end) 100%);
+}
+
+.gradient-stats {
+  background: linear-gradient(135deg, var(--gradient-header-start) 0%, var(--gradient-header-mid) 45%, var(--gradient-header-end) 75%, var(--color-primary-500) 100%);
+}
+
+.gradient-sidebar {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary-900) 80%, black) 0%, var(--color-primary-900) 50%, var(--color-primary-800) 100%);
+}
+
+.gradient-card-placeholder {
+  background: var(--gallery-placeholder-bg);
+}
+
+/* Gallery section button */
+.gallery-btn {
+  background: var(--gallery-btn-bg);
+  color: var(--gallery-btn-text);
+}
+.gallery-btn:hover {
+  background: var(--gallery-btn-hover);
+}
+
+/* Text on gradient — adapts to light/dark mode automatically */
+.on-gradient { color: var(--on-gradient-text); }
+.on-gradient-muted { color: var(--on-gradient-muted); }
+.on-gradient-link { color: var(--on-gradient-link); }
+.stats-value { color: var(--stats-value-color); }
+.stats-label { color: var(--stats-label-color); }

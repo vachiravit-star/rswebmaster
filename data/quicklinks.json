@@ -1,0 +1,8 @@
+[
+  { "id": "ql1", "label": "รับสมัครนักเรียน", "href": "/admissions", "icon": "📋", "color": "blue", "order": 1 },
+  { "id": "ql2", "label": "หลักสูตรการเรียน", "href": "/curriculum", "icon": "📚", "color": "emerald", "order": 2 },
+  { "id": "ql3", "label": "กิจกรรมนักเรียน", "href": "/student-life", "icon": "🎯", "color": "purple", "order": 3 },
+  { "id": "ql4", "label": "ดาวน์โหลดเอกสาร", "href": "/downloads", "icon": "📥", "color": "amber", "order": 4 },
+  { "id": "ql5", "label": "ปฏิทินกิจกรรม", "href": "/calendar", "icon": "📅", "color": "rose", "order": 5 },
+  { "id": "ql6", "label": "ข่าวสารและประกาศ", "href": "/news", "icon": "📢", "color": "slate", "order": 6 }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "dl001",
+    "title": "ใบคำร้องทั่วไป",
+    "category": "parent",
+    "description": "แบบฟอร์มใบคำร้องสำหรับผู้ปกครองใช้ติดต่อกับโรงเรียน",
+    "fileUrl": "#",
+    "fileType": "PDF",
+    "fileSize": "245 KB",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "dl002",
+    "title": "แบบฟอร์มใบลาป่วย",
+    "category": "student",
+    "description": "แบบฟอร์มสำหรับนักเรียนยื่นขอลาป่วย",
+    "fileUrl": "#",
+    "fileType": "PDF",
+    "fileSize": "189 KB",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "dl003",
+    "title": "แผนการจัดการเรียนรู้ (เทมเพลต)",
+    "category": "teacher",
+    "description": "เทมเพลตแผนการสอนมาตรฐานสำหรับครูผู้สอน",
+    "fileUrl": "#",
+    "fileType": "DOCX",
+    "fileSize": "320 KB",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "dl004",
+    "title": "แบบฟอร์มขออนุญาตออกนอกบริเวณโรงเรียน",
+    "category": "student",
+    "description": "แบบฟอร์มสำหรับนักเรียนขออนุญาตออกนอกบริเวณโรงเรียน",
+    "fileUrl": "#",
+    "fileType": "PDF",
+    "fileSize": "156 KB",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "dl005",
+    "title": "คู่มือนักเรียน ปีการศึกษา 2567",
+    "category": "student",
+    "description": "คู่มือนักเรียนโรงเรียนราชสีมาวิทยาลัย ประจำปีการศึกษา 2567",
+    "fileUrl": "#",
+    "fileType": "PDF",
+    "fileSize": "2.5 MB",
+    "createdAt": "2024-05-01T00:00:00.000Z"
+  },
+  {
+    "id": "dl006",
+    "title": "แบบบันทึกการพัฒนาตนเองของครู (ID-PLAN)",
+    "category": "teacher",
+    "description": "แบบฟอร์มบันทึกแผนพัฒนาตนเองของข้าราชการครู",
+    "fileUrl": "#",
+    "fileType": "DOCX",
+    "fileSize": "412 KB",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "dl007",
+    "title": "แบบฟอร์มขอหนังสือรับรอง",
+    "category": "parent",
+    "description": "แบบฟอร์มขอหนังสือรับรองสำหรับผู้ปกครอง",
+    "fileUrl": "#",
+    "fileType": "PDF",
+    "fileSize": "198 KB",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "dl008",
+    "title": "แบบประเมินตนเองของครู (SAR)",
+    "category": "teacher",
+    "description": "แบบรายงานการประเมินตนเองของครูสำหรับการประกันคุณภาพ",
+    "fileUrl": "#",
+    "fileType": "DOCX",
+    "fileSize": "285 KB",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  }
+]

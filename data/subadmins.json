@@ -1,0 +1,11 @@
+[
+  {
+    "id": "mpbekxd2ozumqhyre0r",
+    "username": "admin2",
+    "password": "admin2",
+    "displayName": "พี่ดาว",
+    "allowedPages": [
+      "events"
+    ]
+  }
+]
