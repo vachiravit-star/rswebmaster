@@ -143,7 +143,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 
-  // Fallback: local storage
+  // Fallback: Vercel Blob (production) or local (dev)
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    try {
+      const { put } = await import('@vercel/blob')
+      const blob = await put(`uploads/newsletter/${uniqueName}`, buffer, {
+        access: 'public',
+        contentType: mimeType,
+      })
+      return res.status(200).json({ url: blob.url, driveFileId: '', storage: 'blob' })
+    } catch (e) {
+      console.error('[drive/upload] Vercel Blob failed:', e)
+    }
+  }
+
   const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'newsletter')
   fs.mkdirSync(uploadDir, { recursive: true })
   fs.writeFileSync(path.join(uploadDir, uniqueName), buffer)
