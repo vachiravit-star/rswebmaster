@@ -36,7 +36,7 @@ function FeaturedFolderCard({ folder, thumb }: { folder: GalleryFolder; thumb?: 
   const isExternal = href.startsWith('http')
 
   const inner = (
-    <div className="relative rounded-2xl overflow-hidden aspect-[16/7] min-h-44 group cursor-pointer" style={{ background: 'var(--gallery-placeholder-bg)' }}>
+    <div className="relative rounded-2xl overflow-hidden aspect-[16/7] group cursor-pointer" style={{ background: 'var(--gallery-placeholder-bg)' }}>
       {coverImage ? (
         <img
           src={coverImage}
@@ -183,8 +183,8 @@ export default function DriveGallery({ folders, title = 'ภาพกิจก�
   if (!featuredItem && regularItems.length === 0) return null
 
   return (
-    <section style={{ background: 'var(--gallery-bg)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    <section className="overflow-hidden" style={{ background: 'var(--gallery-bg)' }}>
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 py-8 sm:py-12">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -217,7 +217,7 @@ export default function DriveGallery({ folders, title = 'ภาพกิจก�
 
         {/* Card grid - remaining items */}
         {regularItems.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
             {regularItems.map((folder) => (
               <FolderCard
                 key={folder.id}

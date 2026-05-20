@@ -24,7 +24,7 @@ export default function Layout({ children, title, description }: LayoutProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="min-h-screen flex flex-col bg-slate-50">
+      <div className="min-h-screen flex flex-col bg-slate-50 overflow-x-hidden">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
